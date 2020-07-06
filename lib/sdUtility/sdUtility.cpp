@@ -14,12 +14,12 @@ bool SdUtility::init(int cs){
     }
 
     root = SD.open("/");
-    myGame = LinkedList<myFile*>();
+    fileList = LinkedList<MyFile*>();
   
     return true;
 }
 
-void SdUtility::findGame(File dir, String path){
+void SdUtility::loadFileList(File dir, String path){
  while (true) {
 
     File entry =  dir.openNextFile();
@@ -31,16 +31,13 @@ void SdUtility::findGame(File dir, String path){
     if (entry.isDirectory()) {
       String temp = String(path + entry.name());
       temp = String(temp + "/");
-      findGame(entry,temp);
-      
+     loadFileList(entry,temp);
     } else {
-       if(strstr(entry.name(),".bin")){
-         myFile *temp = new myFile();
+         MyFile *temp = new MyFile();
          temp->setPath(path);
          temp->setNome(entry.name());
-
-        myGame.add(temp);
-       }
+         fileList.add(temp);
+       
     }
     entry.close();
   }
@@ -55,18 +52,18 @@ File SdUtility::getRoot(){
 
 //Gestione del file system dei giochi
 
-void myFile::setNome(String nome){
-  myFile::nomeFile = nome;
+void MyFile::setNome(String nome){
+  MyFile::nomeFile = nome;
 }
 
-void myFile::setPath(String p){
-  myFile::path = p;
+void MyFile::setPath(String p){
+  MyFile::path = p;
 }
 
-String myFile::getPath(){
-  return myFile::path;
+String MyFile::getPath(){
+  return MyFile::path;
 }
 
-String myFile::getNome(){
-  return myFile::nomeFile;
+String MyFile::getNome(){
+  return MyFile::nomeFile;
 }

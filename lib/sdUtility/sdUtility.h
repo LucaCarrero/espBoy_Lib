@@ -6,7 +6,7 @@
 #include <SD.h>
 #include <LinkedList.h>
 
-class myFile {
+class MyFile {
 private:
     String nomeFile;
     String path;
@@ -15,16 +15,17 @@ public:
  void setPath(String p);
   String getPath();
   String getNome();
+ 
 };
 
 class SdUtility {
 private:
     File root;
-    LinkedList<myFile*> myGame;
+    LinkedList<MyFile*> fileList;
 public:
   bool init(int cs);
-  void findGame(File dir, String path) ;
-  File getRoot();
+  void loadFileList(File dir, String path);
+  File getRoot(); 
 
 };
 #endif
