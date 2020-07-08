@@ -12,20 +12,22 @@ private:
     String path;
 public:
   void setNome(String nome);
- void setPath(String p);
+  void setPath(String p);
   String getPath();
   String getNome();
+
 };
 
 class SdUtility {
 private:
-    File root;
-    LinkedList<MyFile*> fileList;
+  File root;
+  LinkedList<MyFile*> fileList;
 public:
   bool init(int cs);
   void loadFileList(File dir, String path);
   File getRoot(); 
   int fileNumber();
   char* getFileEext(const char *string);
+  String findFilePath(char * fileName);
 };
 #endif

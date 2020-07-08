@@ -12,12 +12,12 @@ void setup() {
   }
   char * basePath = (char *)malloc(2);
   strcpy(basePath, "/"); 
-   Serial.println();
-    Serial.println(millis());
-  s.loadFileList(s.getRoot() ,basePath );
-   Serial.println(millis());
-  Serial.print(s.fileNumber());
   
+    
+  s.loadFileList(s.getRoot() ,basePath );
+   
+  Serial.print(s.fileNumber());
+   Serial.println(s.findFilePath("Blink.bin"));
 }
 
 void loop() {

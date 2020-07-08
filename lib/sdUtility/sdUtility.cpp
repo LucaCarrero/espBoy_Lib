@@ -68,8 +68,19 @@ char* SdUtility::getFileEext(const char *string)
     }
  
     return ext;
-}
+} 
 
+ String SdUtility::findFilePath(char * fileName){
+   for(int i = 0; i< fileList.size();i++){
+      MyFile cur = *(fileList.get(i));
+      String temp = cur.getNome();
+
+      if(strcmp(fileName, temp.c_str()) == 0){
+        return cur.getPath();
+      }
+   }
+   return String("");
+ }
 //Gestione del file system dei giochi
 
 void MyFile::setNome(String nome){
