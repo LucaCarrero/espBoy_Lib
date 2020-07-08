@@ -15,7 +15,6 @@ public:
  void setPath(String p);
   String getPath();
   String getNome();
- 
 };
 
 class SdUtility {
@@ -26,6 +25,7 @@ public:
   bool init(int cs);
   void loadFileList(File dir, String path);
   File getRoot(); 
-
+  int fileNumber();
+  char* getFileEext(const char *string);
 };
 #endif

@@ -12,8 +12,11 @@ void setup() {
   }
   char * basePath = (char *)malloc(2);
   strcpy(basePath, "/"); 
-  //s.findGame(s.getRoot() ,basePath );
-  
+   Serial.println();
+    Serial.println(millis());
+  s.loadFileList(s.getRoot() ,basePath );
+   Serial.println(millis());
+  Serial.print(s.fileNumber());
   
 }
 

@@ -33,22 +33,42 @@ void SdUtility::loadFileList(File dir, String path){
       temp = String(temp + "/");
      loadFileList(entry,temp);
     } else {
+      char * ext = getFileEext(entry.name());
+      if(strstr(ext, ".bin")  ){
          MyFile *temp = new MyFile();
          temp->setPath(path);
          temp->setNome(entry.name());
          fileList.add(temp);
-       
+       }
     }
     entry.close();
   }
+  
 }
 
 File SdUtility::getRoot(){
     return root;
 }
 
+int SdUtility::fileNumber(){
+  return fileList.size();
+}
 
-
+char* SdUtility::getFileEext(const char *string)
+{
+    assert(string != NULL);
+    char *ext = strrchr(string, '.');
+ 
+    if (ext == NULL)
+        return (char*) string + strlen(string);
+ 
+    for (char *iter = ext + 1; *iter != '\0'; iter++) {
+        if (!isalnum((unsigned char)*iter))
+            return (char*) string + strlen(string);
+    }
+ 
+    return ext;
+}
 
 //Gestione del file system dei giochi
 
