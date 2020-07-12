@@ -1,6 +1,7 @@
 #include <Arduino.h>
 #include "sdUtility.h"
 
+
 SdUtility s;
 
 void setup() {
@@ -13,11 +14,12 @@ void setup() {
   char * basePath = (char *)malloc(2);
   strcpy(basePath, "/"); 
   
-    
+  Serial.println(ESP.getFreeHeap());
+
   s.loadFileList(s.getRoot() ,basePath );
-   
-  Serial.print(s.fileNumber());
+ 
    Serial.println(s.findFilePath("Blink.bin"));
+    Serial.println(ESP.getFreeHeap());
 }
 
 void loop() {

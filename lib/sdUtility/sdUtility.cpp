@@ -33,11 +33,12 @@ void SdUtility::loadFileList(File dir, String path){
       temp = String(temp + "/");
      loadFileList(entry,temp);
     } else {
-      char * ext = getFileEext(entry.name());
-      if(strstr(ext, ".bin")  ){
+      char * ext = getFileExt(entry.name());
+      if(strstr(ext, ".bin") ||  strstr(ext, ".sav")){
          MyFile *temp = new MyFile();
          temp->setPath(path);
          temp->setNome(entry.name());
+        
          fileList.add(temp);
        }
     }
@@ -54,7 +55,7 @@ int SdUtility::fileNumber(){
   return fileList.size();
 }
 
-char* SdUtility::getFileEext(const char *string)
+char* SdUtility::getFileExt(const char *string)
 {
     assert(string != NULL);
     char *ext = strrchr(string, '.');
@@ -84,17 +85,25 @@ char* SdUtility::getFileEext(const char *string)
 //Gestione del file system dei giochi
 
 void MyFile::setNome(String nome){
-  MyFile::nomeFile = nome;
+   char * temp = (char *)malloc(nome.length() * sizeof(char) );
+  strcpy(temp, nome.c_str()); 
+
+  MyFile::nomeFile = temp;
+ 
 }
 
 void MyFile::setPath(String p){
-  MyFile::path = p;
+  char * temp = (char *)malloc(p.length() * sizeof(char) );
+  strcpy(temp, p.c_str()); 
+
+  MyFile::path =temp;
 }
 
 String MyFile::getPath(){
-  return MyFile::path;
+  
+  return String(MyFile::path);
 }
 
 String MyFile::getNome(){
-  return MyFile::nomeFile;
+  return String(MyFile::nomeFile);
 }
