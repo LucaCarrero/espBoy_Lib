@@ -2,8 +2,6 @@
 #include <LinkedList.h>
 #include <SPI.h>
 #include <SD.h>
-#include <SPI.h>
-#include <SD.h>
 
 // gestionr della micro sd
 
