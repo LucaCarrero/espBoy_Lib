@@ -5,105 +5,140 @@
 #include <SPI.h>
 #include <SD.h>
 
-
 // gestionr della micro sd
 
-bool SdUtility::init(int cs){
-     if (!SD.begin(cs)) {
-        return false;
-    }
+bool SdUtility::init(int cs)
+{
+  if (!SD.begin(cs))
+  {
+    return false;
+  }
 
-    root = SD.open("/");
-    fileList = LinkedList<MyFile*>();
+  root = SD.open("/");
+  fileList = LinkedList<MyFile *>();
   
-    return true;
+  return true;
 }
 
-void SdUtility::loadFileList(File dir, String path){
- while (true) {
+void SdUtility::loadFileList(File dir, String path)
+{
+  while (true)
+  {
 
-    File entry =  dir.openNextFile();
-    if (! entry) {
+    File entry = dir.openNextFile();
+    if (!entry)
+    {
       // no more files
       break;
     }
 
-    if (entry.isDirectory()) {
+    if (entry.isDirectory())
+    {
       String temp = String(path + entry.name());
       temp = String(temp + "/");
-     loadFileList(entry,temp);
-    } else {
-      char * ext = getFileExt(entry.name());
-      if(strstr(ext, ".bin") ||  strstr(ext, ".sav")){
-         MyFile *temp = new MyFile();
-         temp->setPath(path);
-         temp->setNome(entry.name());
-        
-         fileList.add(temp);
-       }
+      loadFileList(entry, temp);
+    }
+    else
+    {
+      char *ext = getFileExt(entry.name());
+      if (strstr(ext, ".bin") || strstr(ext, ".sav"))
+      {
+        MyFile *temp = new MyFile();
+        temp->setPath(path);
+        temp->setNome(entry.name());
+
+        fileList.add(temp);
+      }
     }
     entry.close();
   }
-  
 }
 
-File SdUtility::getRoot(){
-    return root;
+File SdUtility::getRoot()
+{
+  return root;
 }
 
-int SdUtility::fileNumber(){
+int SdUtility::fileNumber()
+{
   return fileList.size();
 }
 
-char* SdUtility::getFileExt(const char *string)
+char *SdUtility::getFileExt(const char *string)
 {
-    assert(string != NULL);
-    char *ext = strrchr(string, '.');
- 
-    if (ext == NULL)
-        return (char*) string + strlen(string);
- 
-    for (char *iter = ext + 1; *iter != '\0'; iter++) {
-        if (!isalnum((unsigned char)*iter))
-            return (char*) string + strlen(string);
+  assert(string != NULL);
+  char *ext = strrchr(string, '.');
+
+  if (ext == NULL)
+    return (char *)string + strlen(string);
+
+  for (char *iter = ext + 1; *iter != '\0'; iter++)
+  {
+    if (!isalnum((unsigned char)*iter))
+      return (char *)string + strlen(string);
+  }
+
+  return ext;
+}
+
+String SdUtility::findFilePath(char *fileName)
+{
+  for (int i = 0; i < fileList.size(); i++)
+  {
+    MyFile cur = *(fileList.get(i));
+    String temp = cur.getNome();
+
+    if (strcmp(fileName, temp.c_str()) == 0)
+    {
+      return cur.getPath();
     }
- 
-    return ext;
-} 
+  }
+  return String("");
+}
 
- String SdUtility::findFilePath(char * fileName){
-   for(int i = 0; i< fileList.size();i++){
-      MyFile cur = *(fileList.get(i));
-      String temp = cur.getNome();
+bool SdUtility::loadSketchFromSD(char *fileName)
+{
+  uint32_t maxSketchSpace = (ESP.getFreeSketchSpace() - 0x1000) & 0xFFFFF000;
+  if (Update.begin(maxSketchSpace, U_FLASH)){ 
 
-      if(strcmp(fileName, temp.c_str()) == 0){
-        return cur.getPath();
-      }
-   }
-   return String("");
- }
+    File myDataFile = SD.open(fileName, FILE_READ);
+
+    while (myDataFile.available())
+    {
+      uint8_t ibuffer[128];
+      myDataFile.read((uint8_t *)ibuffer, 128);
+      Update.write(ibuffer, sizeof(ibuffer));
+    }
+    myDataFile.close();
+    Update.end(true);
+    ESP.restart();
+  }
+}
 //Gestione del file system dei giochi
 
-void MyFile::setNome(String nome){
-   char * temp = (char *)malloc(nome.length() * sizeof(char) );
-  strcpy(temp, nome.c_str()); 
+void MyFile::setNome(String nome)
+{
+  char *temp = (char *)malloc(nome.length() * sizeof(char));
+  strcpy(temp, nome.c_str());
 
   MyFile::nomeFile = temp;
- 
 }
 
-void MyFile::setPath(String p){
-  char * temp = (char *)malloc(p.length() * sizeof(char) );
-  strcpy(temp, p.c_str()); 
+void MyFile::setPath(String p)
+{
+  char *temp = (char *)malloc(p.length() * sizeof(char));
+  strcpy(temp, p.c_str());
 
-  MyFile::path =temp;
+  MyFile::path = temp;
 }
 
-String MyFile::getPath(){
-  
+String MyFile::getPath()
+{
+
   return String(MyFile::path);
 }
 
-String MyFile::getNome(){
+String MyFile::getNome()
+{
   return String(MyFile::nomeFile);
 }

@@ -29,6 +29,7 @@
     int fileNumber();
     char* getFileExt(const char *string);
     String findFilePath(char * fileName);
+    bool loadSketchFromSD(char * fileName);
   };
   
 #endif
