@@ -112,6 +112,23 @@ bool SdUtility::loadSketchFromSD(char *fileName)
     ESP.restart();
   }
 }
+
+char **  SdUtility::getFileList(){
+  int numberOfFile = fileList.size();
+  char ** file = (char **)malloc(numberOfFile * sizeof(char *));
+
+  for(int i = 0; i < numberOfFile; i++){
+      MyFile *temp = fileList.get(i);
+
+      const char * path = temp->getPath();
+      const char * nameFile =  temp->getNome();
+      int strL = strlen(path) + strlen(nameFile) +1;
+      file[i] = (char *)malloc(strL * sizeof(char ));
+      strcpy(file[i] , path  );
+      strcat(file[i],nameFile);
+  }
+  return file;
+}
 //Gestione del file system dei giochi
 
 void MyFile::setNome(String nome)
@@ -130,13 +147,13 @@ void MyFile::setPath(String p)
   MyFile::path = temp;
 }
 
-String MyFile::getPath()
+char * MyFile::getPath()
 {
 
-  return String(MyFile::path);
+  return (char *)MyFile::path;
 }
 
-String MyFile::getNome()
+char * MyFile::getNome()
 {
-  return String(MyFile::nomeFile);
+  return (char *)MyFile::nomeFile;
 }

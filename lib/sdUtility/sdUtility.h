@@ -13,8 +13,8 @@
   public:
     void setNome(String nome);
     void setPath(String p);
-    String getPath();
-    String getNome();
+    char * getPath();
+    char * getNome();
 
   };
 
@@ -30,6 +30,7 @@
     char* getFileExt(const char *string);
     String findFilePath(char * fileName);
     bool loadSketchFromSD(char * fileName);
+    char ** getFileList();
   };
   
 #endif

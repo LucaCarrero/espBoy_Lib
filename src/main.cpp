@@ -1,11 +1,12 @@
 #include <Arduino.h>
 #include "sdUtility.h"
+#include "Menu.h"
 
 
 SdUtility s;
 
 void setup() {
-
+  Serial.begin(9600);
   if(!s.init(15)){
     return;
   }
@@ -14,14 +15,13 @@ void setup() {
   
 
   s.loadFileList(s.getRoot() ,basePath );
- 
-  String temp = String(s.findFilePath("Blink.bin") ) + String("Blink.bin");
 
-  s.loadSketchFromSD((char *)temp.c_str());
-  //Serial.println(ESP.getFreeHeap());
+  Serial.println(s.getFileList()[0]);
+
+  
 }
 
 void loop() {
   // put your main code here, to run repeatedly:
  
-}
+} 
