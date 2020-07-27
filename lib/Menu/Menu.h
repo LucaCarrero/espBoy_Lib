@@ -4,7 +4,6 @@
 #include "Arduino.h"
 
 #include <U8g2lib.h>
-#define DISPLAY_HAIGHT 84
 
 class Menu {
 private:
@@ -17,5 +16,6 @@ public:
     void incIndide();
     void decIndice();
     int getInd();
+    void setMenuItem(char **item );
 };
 #endif
