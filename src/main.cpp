@@ -18,7 +18,7 @@ Menu m;
 void setup() {
   pinMode(1, OUTPUT);
   pinMode(16, OUTPUT);
-
+  // don't talk to LCD while we init the SD
   digitalWrite(16, HIGH);
   digitalWrite(1, LOW);
   if(!s.init(15)){
@@ -34,6 +34,8 @@ void setup() {
   char ** d = s.getFileList();
   Serial.print(d[0]);
  //return;
+
+  // don't talk to SD while we init the LCD
   digitalWrite(16, LOW);
   digitalWrite(1, HIGH);
 
