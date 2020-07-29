@@ -11,14 +11,19 @@ void Menu::disegnaM(U8G2 &t){
 
 
     int h = t.getFontAscent()-t.getFontDescent(); 
-    t.drawStr( t.getStrWidth(" "),(indice*h*2)+1,">");
+    t.drawStr( t.getStrWidth(""),(indice*h*2)+1,"> ");
     for(int i = 1; i<4; i++){
-      int d = t.getStrWidth(" > ");
+      int d = t.getStrWidth("> ");
       if(i == indice){
          t.drawStr(d,(i*h*2)+1,s[i-1]+posizionScrolSelected);
-         if(strlen(s[i-1]) == posizionScrolSelected) 
-            posizionScrolSelected = 0;    
+
+        if(strlen(s[i-1]) == posizionScrolSelected) 
+              posizionScrolSelected = 0;    
+      }else
+      {
+        t.drawStr(d,(i*h*2)+1,s[i-1]);
       }
+      
        
     }
     
