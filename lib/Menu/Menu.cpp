@@ -9,20 +9,33 @@ void Menu::disegnaM(U8G2 &t){
     t.drawStr(tit,t.getFontAscent(),titolo[0]);
     t.drawLine(0,t.getFontAscent()+1,t.getDisplayWidth(),t.getFontAscent()+1);
 
-    int h = t.getFontAscent()-t.getFontDescent();
+
+    int h = t.getFontAscent()-t.getFontDescent(); 
+    t.drawStr( t.getStrWidth(" "),(indice*h*2)+1,">");
     for(int i = 1; i<4; i++){
-      int d = ((84/2)-(t.getStrWidth(s[i-1])/2));
-      t.drawStr(d,(i*h*2)+1,s[i-1]);     
+      int d = t.getStrWidth(" > ");
+      if(i == indice){
+         t.drawStr(d,(i*h*2)+1,s[i-1]+posizionScrolSelected);
+         if(strlen(s[i-1]) == posizionScrolSelected) 
+            posizionScrolSelected = 0;    
+      }
+       
     }
-    t.drawStr(17,(indice*h*2)+1,">");   
+    
 }
 
 void Menu::incIndide(){
-  indice++;
+   if(indice -1 < sizeof(s)/sizeof(s[0])){
+    indice--;
+    posizionScrolSelected = 0;
+  } 
 }
 
 void Menu::decIndice(){
-  indice--;
+  if(indice - 1 >= 0){
+    indice--;
+    posizionScrolSelected = 0;
+  } 
 }
 
 int Menu::getInd(){
@@ -31,4 +44,8 @@ int Menu::getInd(){
 
 void Menu::setMenuItem(char **item){
   s = item;
+}
+
+void Menu::scrolSelectedVoice(int unit){
+   posizionScrolSelected += unit;
 }

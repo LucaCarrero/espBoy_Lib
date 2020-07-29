@@ -52,7 +52,7 @@ u8g2.firstPage();
     m.disegnaM(u8g2);
     
   } while( u8g2.nextPage() );
- 
+  m.scrolSelectedVoice(1);
  // rebuild the picture after some delay
  delay(1000);
 } 

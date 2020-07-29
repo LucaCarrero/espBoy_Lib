@@ -10,6 +10,7 @@ private:
     char **s;
     char *titolo[10] = {"Snake"};
     int indice;
+    int posizionScrolSelected = 0;
 public:
     void disegnaM(U8G2 &t);
     Menu();
@@ -17,5 +18,6 @@ public:
     void decIndice();
     int getInd();
     void setMenuItem(char **item );
+    void scrolSelectedVoice(int unit );
 };
 #endif
