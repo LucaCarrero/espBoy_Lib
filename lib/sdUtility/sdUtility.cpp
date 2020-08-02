@@ -129,6 +129,10 @@ char **  SdUtility::getFileList(){
   }
   return file;
 }
+
+int SdUtility::getNumOfFile(){
+  return  fileList.size();
+}
 //Gestione del file system dei giochi
 
 void MyFile::setNome(String nome)

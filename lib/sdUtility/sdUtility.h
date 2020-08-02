@@ -31,6 +31,7 @@
     String findFilePath(char * fileName);
     bool loadSketchFromSD(char * fileName);
     char ** getFileList();
+    int getNumOfFile();
   };
   
 #endif
