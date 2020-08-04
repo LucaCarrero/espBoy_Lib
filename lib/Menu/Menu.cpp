@@ -21,7 +21,7 @@ void Menu::disegnaM(U8G2 &t){
       if(i == indice){
          t.drawStr(d,(i*h*2)+1,s[i-1+startIndex]+posizionScrolSelected);
 
-        if(strlen(s[i-1]) == posizionScrolSelected) 
+        if(strlen(s[i-1+startIndex]) == posizionScrolSelected -1) 
               posizionScrolSelected = 0;    
       }else
       {
