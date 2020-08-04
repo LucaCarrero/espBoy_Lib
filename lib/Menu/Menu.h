@@ -21,5 +21,6 @@ public:
     int getInd();
     void setMenuItem(char **item,int numberOfVoice );
     void scrolSelectedVoice(int unit );
+    char * getSelectedVoice();
 };
 #endif

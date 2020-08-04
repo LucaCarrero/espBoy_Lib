@@ -66,3 +66,7 @@ void Menu::setMenuItem(char **item, int numberOfVoice){
 void Menu::scrolSelectedVoice(int unit){
    posizionScrolSelected += unit;
 }
+
+char * Menu::getSelectedVoice(){
+  return s[(page * PAGE_ELEMENT) + (indice)];
+}
