@@ -48,7 +48,8 @@ void setup() {
 
   u8g2.setContrast(115);
 
-  m.setMenuItem(d,s.getNumOfFile()-1);
+  m.setMenuItem(d,s.getNumOfFile()-1
+);
 }
 
 void loop() { u8g2.setFont(u8g2_font_4x6_tf);

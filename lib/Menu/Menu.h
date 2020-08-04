@@ -10,7 +10,7 @@ private:
     char **s;
     int voiceNumber;
     char *titolo[10] = {"Snake"};
-    int indice;
+    uint8_t indice;
     int posizionScrolSelected = 0;
     int page = 0;
 public:
@@ -20,7 +20,7 @@ public:
     void decIndice();
     int getInd();
     void setMenuItem(char **item,int numberOfVoice );
-    void scrolSelectedVoice(int unit );
+    void scrolSelectedVoice(uint8_t unit );
     char * getSelectedVoice();
 };
 #endif

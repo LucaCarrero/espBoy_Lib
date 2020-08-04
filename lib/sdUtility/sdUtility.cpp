@@ -12,7 +12,6 @@ bool SdUtility::init(int cs)
     return false;
   }
 
-  root = SD.open("/");
   fileList = LinkedList<MyFile *>();
   
   return true;
@@ -54,7 +53,7 @@ void SdUtility::loadFileList(File dir, String path)
 
 File SdUtility::getRoot()
 {
-  return root;
+  return SD.open("/");
 }
 
 int SdUtility::fileNumber()

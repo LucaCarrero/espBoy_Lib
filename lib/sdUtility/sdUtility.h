@@ -20,7 +20,6 @@
 
   class SdUtility {
   private:
-    File root;
     LinkedList<MyFile*> fileList;
   public:
     bool init(int cs);

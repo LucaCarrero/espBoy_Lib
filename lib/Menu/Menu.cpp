@@ -5,19 +5,19 @@ Menu::Menu(){
 }
 
 void Menu::disegnaM(U8G2 &t){
-    int tit = ((t.getDisplayWidth()/2)-(t.getStrWidth(titolo[0])/2));
+    uint8_t tit = ((t.getDisplayWidth()/2)-(t.getStrWidth(titolo[0])/2));
     t.drawStr(tit,t.getFontAscent(),titolo[0]);
     t.drawLine(0,t.getFontAscent()+1,t.getDisplayWidth(),t.getFontAscent()+1);
 
     int h = t.getFontAscent()-t.getFontDescent(); 
 
     int startIndex = (page * PAGE_ELEMENT);
-    int elemToPrint = voiceNumber - startIndex < PAGE_ELEMENT ? voiceNumber - startIndex : PAGE_ELEMENT;
+    uint8_t elemToPrint = voiceNumber - startIndex < PAGE_ELEMENT ? voiceNumber - startIndex : PAGE_ELEMENT;
     
     t.drawStr(0,(indice*h*2)+1,">");
     for(int i = 1; i< elemToPrint+1 ; i++){
       
-      int d = t.getStrWidth("> ");
+      uint8_t d = t.getStrWidth("> ");
       if(i == indice){
          t.drawStr(d,(i*h*2)+1,s[i-1+startIndex]+posizionScrolSelected);
 
@@ -63,7 +63,7 @@ void Menu::setMenuItem(char **item, int numberOfVoice){
   voiceNumber = numberOfVoice;
 }
 
-void Menu::scrolSelectedVoice(int unit){
+void Menu::scrolSelectedVoice(uint8_t unit){
    posizionScrolSelected += unit;
 }
 
