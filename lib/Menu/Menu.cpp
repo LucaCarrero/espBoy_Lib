@@ -68,5 +68,6 @@ void Menu::scrolSelectedVoice(uint8_t unit){
 }
 
 char * Menu::getSelectedVoice(){
-  return s[(page * PAGE_ELEMENT) + (indice)];
+
+  return s[(page * PAGE_ELEMENT) + (indice-1)];
 }
