@@ -5,14 +5,20 @@
 
 #include <U8g2lib.h>
 #define PAGE_ELEMENT 3
+
+/*
+    l'array delle voci per essere paginato viene trattato
+    come se fosse una matrice, page gestisce la riga mentre
+    indice decide la colonna sulla riga.
+*/
 class Menu {
 private:
-    char **s;
-    int voiceNumber;
-    char *titolo;
-    uint8_t indice;
-    int posizionScrolSelected = 0;
-    int page = 0;
+    char **s; // array delle voci del menù
+    int voiceNumber;  // numero delle voci
+    char *titolo; // titolo del menù
+    uint8_t indice; // indice della voce selezionata nella pagina corrente
+    int posizionScrolSelected = 0; // ofset per lo scorrimento della voce selezionata
+    int page = 0; // pagina corrente
 public:
     void disegnaM(U8G2 &t);
     Menu();
