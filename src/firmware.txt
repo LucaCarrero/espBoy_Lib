@@ -50,7 +50,7 @@ void setup() {
   u8g2.setContrast(115);
 
   m.setMenuItem(d,s.getNumOfFile());
-
+  m.setTitle("select game");
   while(true){
      u8g2.setFont(u8g2_font_4x6_tf);
     // put your main code here, to run repeatedly:

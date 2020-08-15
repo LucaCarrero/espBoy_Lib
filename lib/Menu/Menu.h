@@ -9,7 +9,7 @@ class Menu {
 private:
     char **s;
     int voiceNumber;
-    char *titolo[10] = {"Snake"};
+    char *titolo;
     uint8_t indice;
     int posizionScrolSelected = 0;
     int page = 0;
@@ -22,5 +22,6 @@ public:
     void setMenuItem(char **item,int numberOfVoice );
     void scrolSelectedVoice(uint8_t unit );
     char * getSelectedVoice();
+    void setTitle(char * title);
 };
 #endif
