@@ -21,13 +21,6 @@ void setup() {
   pcf8574.pinMode(P0, INPUT_PULLUP); // giù
   pcf8574.pinMode(P7,  INPUT_PULLUP); // su
   pcf8574.pinMode(P1, INPUT_PULLUP); //A
-
-  pinMode(1, OUTPUT);
-  pinMode(16, OUTPUT);
-
-  // don't talk to LCD while we init the SD
-  digitalWrite(16, HIGH);
-  digitalWrite(1, LOW);
  
   if(!s.init(1)){
     return;
@@ -39,10 +32,6 @@ void setup() {
   s.loadFileList(s.getRoot() ,basePath );
   
   char ** d = s.getFileList();
-
-  // don't talk to SD while we init the LCD
-  digitalWrite(16, LOW);
-  digitalWrite(1, HIGH);
 
   u8g2.begin();
   pcf8574.begin();
@@ -75,10 +64,8 @@ void setup() {
     delay(400);
   }  
 
-  digitalWrite(16, HIGH);
-  digitalWrite(1, LOW);
-  if(!s.init(1)){
-    return;
+  if(!s.sdBegin()){
+   return;
   }
   s.loadSketchFromSD(m.getSelectedVoice());
 }

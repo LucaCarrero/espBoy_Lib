@@ -6,6 +6,7 @@
   #include <SD.h>
   #include <LinkedList.h>
 
+// classe che descrive il file
   class MyFile {
   private:
     const char* nomeFile;
@@ -18,6 +19,9 @@
 
   };
 
+// classe utility per lavorare più agilmente con l'elenco dei file
+// ATTENZIONE: usare con parsimonia libreria molto pesante, grande consumo di memoria
+// TODO garbege collector
   class SdUtility {
   private:
     LinkedList<MyFile*> fileList;
@@ -31,6 +35,7 @@
     bool loadSketchFromSD(char * fileName);
     char ** getFileList();
     int getNumOfFile();
+    bool sdBegin(int cs);
   };
   
 #endif

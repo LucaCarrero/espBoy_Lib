@@ -17,7 +17,7 @@ private:
     int voiceNumber;  // numero delle voci
     char *titolo; // titolo del menù
     uint8_t indice; // indice della voce selezionata nella pagina corrente
-    int posizionScrolSelected = 0; // ofset per lo scorrimento della voce selezionata
+    int posizionScrolSelected = 0; // offset per lo scorrimento della voce selezionata
     int page = 0; // pagina corrente
 public:
     void disegnaM(U8G2 &t);
