@@ -21,7 +21,7 @@
 
 // classe utility per lavorare più agilmente con l'elenco dei file
 // ATTENZIONE: usare con parsimonia libreria molto pesante, grande consumo di memoria
-// TODO garbege collector
+// TODO garbege collector, eliminazione dei file dalla sd
   class SdUtility {
   private:
     LinkedList<MyFile*> fileList;
