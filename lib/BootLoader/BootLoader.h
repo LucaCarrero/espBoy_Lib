@@ -9,10 +9,7 @@
 
 //TODO ottimizzazione della memoria in caso di sviluppi della libreria
 //libreria che ha la funzione di bios,kernel e boot per l'ecosistema
-class Boot{
-    public:
-        Boot(int cs);
-};
+
 // è obbligatorio usare questa funzione come prima riga di ogni gioco
 /*
     quando ci si trova nel firmware di base lo stato (gameLoaded) sarà a 1 ovvero il sistema si aspetta che una volta
@@ -21,7 +18,7 @@ class Boot{
 
     Sarà obbligatorio che sulla sd sia no presenti i due file (config.conf fil contenente le configutrazioni, boot.bin file contenente il firmware di base compilato per l'esp8266)
 */
-Boot::Boot(int cs = 1){ 
+void boot(int cs = 1){ 
   
     if(!SD.begin(cs)){ // inizializzo la comunicazion econ la sd
         return; // se fallisce termino

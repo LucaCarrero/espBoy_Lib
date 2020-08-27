@@ -2,7 +2,7 @@
 #include "BootLoader.h"
 
 void setup() {
- Boot b(1);
+ boot (1);
 }
 
 void loop() {
