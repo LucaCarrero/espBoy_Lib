@@ -12,7 +12,9 @@ class KeyController{
         int right; // puntatori a funzione?
         int a;
         int b;
-    public:
+       
+    public: 
+        void (*prova)(int);
         bool begin();
         bool isUpPressed(); // usarle con un puntatore a funzione come call back?  così da configurarle nel setup e una fuzione unica nel loop che controlla i pulsanti.
         bool isDownPressed(); // questi quindi diventerebbero dei setter delle funzioni
@@ -22,6 +24,9 @@ class KeyController{
         bool isBPressed();
         // onRefresh();   funzione da mettere nel loop per il confrollo degli eventi
         void saveKeyMap();
+        void setF(void (*p)(int)){
+            prova = p;
+        }
 };
 
 #endif
