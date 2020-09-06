@@ -14,7 +14,7 @@ Il progetto è in stato di sviluppo.
 
 <h2>Software</h2>
 
-Il software presente sono una serie di librerie che mirano a creare un ambiente di sviluppo di vidiogiocho e aplicazioni sulla piattaforma.
+Il software presente sono una serie di librerie che mirano a creare un ambiente di sviluppo di vidiogiochi e aplicazioni sulla piattaforma.
 Librerie presenti da me create per la gestione dell'hardware:
     <li><a href="https://github.com/LucaCarrero/espBoy_Lib/tree/master/lib/Menu">Menu</a>: libreria per realizzare un semplice menu su display grafici compatibili con la libreria u8g2</li>
     <li><a href="https://github.com/LucaCarrero/espBoy_Lib/tree/master/lib/sdUtility">SdUtility</a>: libreria che mette a disposizione una serie di funzionalità per lavorare con i file presenti nella SD</li>
