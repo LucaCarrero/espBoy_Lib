@@ -29,4 +29,4 @@ Clonare o scaricare il progetto e aprirlo con PlatformIO.
 Una volta ultimato il pachetto di librerie mi piacerebbe realizzare un motore grafico 2d per semplificare lo sviluppo, 
  rendere compatibile l'ambiente di sviluppo con tutti i microcontrollori programmabili con l'Arduino core e usare display tft a colori per dare la possibilità di realizzare giochi a colori.
  
-<h4>TODO: </h4>Ultimare le librerie per la gestione dell'hardware.<p>Insieme di classi e utility per lo sviluppo di videogiochi.
+<h4>TODO: </h4>Ultimare le librerie per la gestione dell'hardware.<p>Insieme di classi e utility per lo sviluppo di videogiochi.</p><p>wiki per descrivere il funzionamento delle librerie</p>
