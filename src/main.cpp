@@ -1,8 +1,9 @@
 #include <Arduino.h>
-#include "BootLoader.h"
+#include "BootLoader.h" 
+#define USE_KEY_CIP 1
 #include "KeyController.h"
 
-#define USE_KEY_CIP 1
+
 KeyController k;
 
 void prova()
@@ -16,6 +17,8 @@ void setup()
     Serial.begin(9600);
     k.begin();
     k.onDownPress(prova);
+   // k.saveKeyMap();
+    k.loadKeyMap();
     //boot (1);
 }
 

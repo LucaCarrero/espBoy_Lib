@@ -4,6 +4,9 @@
 #include "Arduino.h"
 #include <PCF8574.h>
 
+#define USE_PCF 0
+#define USE_MIC_PIN 1
+
 class KeyController
 {
 private:
@@ -13,6 +16,8 @@ private:
     int right = P5;
     int a = P1;
     int b = P2;
+
+    int mode;
 
     void (*upCallBack)() = NULL;
     void (*downCallBack)() = NULL;
@@ -24,7 +29,7 @@ private:
 public:
     PCF8574 keyExt = PCF8574(0x20);
 
-    bool begin();
+    bool begin(int mode =0);
     void saveKeyMap();
     void loadKeyMap();
 

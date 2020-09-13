@@ -1,62 +1,191 @@
 #include "PCF8574.h"
 #include "KeyController.h"
+#include "FS.h"
 
-bool KeyController::begin()
+bool KeyController::begin(int mode)
 {
-    bool initRis = keyExt.begin();
-    keyExt.pinMode(P0, INPUT_PULLUP); // giù
-    keyExt.pinMode(P7, INPUT_PULLUP); // su
-    keyExt.pinMode(P1, INPUT_PULLUP); //A
-    keyExt.pinMode(P2, INPUT_PULLUP); // B
-    keyExt.pinMode(P5, INPUT_PULLUP); // dx
-    keyExt.pinMode(P3, INPUT_PULLUP); // sx
+    if (mode == USE_PCF)
+    {
+        keyExt.begin();
+        keyExt.pinMode(up, INPUT_PULLUP);    // giù
+        keyExt.pinMode(down, INPUT_PULLUP);  // su
+        keyExt.pinMode(a, INPUT_PULLUP);     //A
+        keyExt.pinMode(b, INPUT_PULLUP);     // B
+        keyExt.pinMode(right, INPUT_PULLUP); // dx
+        keyExt.pinMode(left, INPUT_PULLUP);  // sx
+    }
+    else
+    {
+        pinMode(up, INPUT_PULLUP);    // giù
+        pinMode(down, INPUT_PULLUP);  // su
+        pinMode(a, INPUT_PULLUP);     //A
+        pinMode(b, INPUT_PULLUP);     // B
+        pinMode(right, INPUT_PULLUP); // dx
+        pinMode(left, INPUT_PULLUP);  // sx
+    }
+    KeyController::mode = mode;
 }
 
-void KeyController::saveKeyMap() {}
-void KeyController::loadKeyMap() {}
+#ifdef ESP8266
+void KeyController::saveKeyMap()
+{
+    Serial.begin(9600);
+    if (SPIFFS.begin())
+    {
+        char button[][6] = {"a", "b", "up", "down", "right", "left"};
+        File file = SPIFFS.open("/button.conf", "w");
+
+        for (size_t i = 0; i < 6; i++)
+        {
+            Serial.print("insert pin button ");
+            Serial.print(button[i]);
+            Serial.println(" : ");
+
+            while (Serial.available() == 0);
+
+            String readed = Serial.readString();
+            file.println(readed.toInt());
+        }
+    }
+    else
+    {
+        Serial.print("memory acces faild");
+    }
+}
+
+void KeyController::loadKeyMap()
+{
+    Serial.begin(9600);
+    if (SPIFFS.begin())
+    {
+        char button[][6] = {"a", "b", "up", "down", "right", "left"};
+        int buttonVal[6];
+
+        File file = SPIFFS.open("/button.conf", "r");
+        if (!file)
+        {
+            Serial.print("file not exist");
+            return;
+        }
+
+        for (size_t i = 0; i < 6; i++)
+        {
+            Serial.print("insert pin button ");
+            Serial.print(button[i]);
+            Serial.print(" : ");
+            int val = file.parseInt();
+            Serial.println(val);
+            buttonVal[i] = val;
+        }
+
+        up = buttonVal[2];
+        down = buttonVal[3];
+        left = buttonVal[5];
+        right = buttonVal[4];
+        a = buttonVal[0];
+        b = buttonVal[1];
+    }
+    else
+    {
+        Serial.print("memory acces faild");
+    }
+}
+#endif
 
 bool KeyController::isUpPressed()
 {
+    if (mode == USE_MIC_PIN)
+    {
+        if (digitalRead(up) == LOW)
+        {
+            return true;
+        }
+        return false;
+    }
+
     if (keyExt.digitalRead(up) == LOW)
-    { 
+    {
         return true;
     }
     return false;
 }
 bool KeyController::isDownPressed()
 {
+    if (mode == USE_MIC_PIN)
+    {
+        if (digitalRead(down) == LOW)
+        {
+            return true;
+        }
+        return false;
+    }
     if (keyExt.digitalRead(down) == LOW)
-    { 
+    {
         return true;
     }
     return false;
 }
 bool KeyController::isLeftPressed()
 {
+    if (mode == USE_MIC_PIN)
+    {
+        if (digitalRead(left) == LOW)
+        {
+            return true;
+        }
+        return false;
+    }
+
     if (keyExt.digitalRead(left) == LOW)
-    { 
+    {
         return true;
     }
     return false;
 }
 bool KeyController::isRightPressed()
 {
+    if (mode == USE_MIC_PIN)
+    {
+        if (digitalRead(right) == LOW)
+        {
+            return true;
+        }
+        return false;
+    }
+
     if (keyExt.digitalRead(right) == LOW)
-    { 
+    {
         return true;
     }
     return false;
 }
 bool KeyController::isAPressed()
 {
+    if (mode == USE_MIC_PIN)
+    {
+        if (digitalRead(a) == LOW)
+        {
+            return true;
+        }
+        return false;
+    }
     if (keyExt.digitalRead(a) == LOW)
-    { 
+    {
         return true;
     }
     return false;
 }
 bool KeyController::isBPressed()
 {
+    if (mode == USE_MIC_PIN)
+    {
+        if (digitalRead(b) == LOW)
+        {
+            return true;
+        }
+        return false;
+    }
+
     if (keyExt.digitalRead(b) == LOW)
     {
         return true;

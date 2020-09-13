@@ -3,6 +3,7 @@
     "",
     "\\lib",
     "\\lib\\KeyController",
+    "\\lib\\LinkedList",
     "\\src"
   ],
   "SelectedNode": "\\src\\main.cpp",
