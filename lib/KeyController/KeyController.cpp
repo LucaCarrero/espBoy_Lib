@@ -10,7 +10,6 @@ bool KeyController::begin()
     keyExt.pinMode(P2, INPUT_PULLUP); // B
     keyExt.pinMode(P5, INPUT_PULLUP); // dx
     keyExt.pinMode(P3, INPUT_PULLUP); // sx
-    Serial.print(upCallBack == NULL);
 }
 
 void KeyController::saveKeyMap() {}
@@ -18,48 +17,48 @@ void KeyController::loadKeyMap() {}
 
 bool KeyController::isUpPressed()
 {
-    if (keyExt.digitalRead(P7) == LOW)
-    { // giù
+    if (keyExt.digitalRead(up) == LOW)
+    { 
         return true;
     }
     return false;
 }
 bool KeyController::isDownPressed()
 {
-    if (keyExt.digitalRead(P0) == LOW)
-    { // giù
+    if (keyExt.digitalRead(down) == LOW)
+    { 
         return true;
     }
     return false;
 }
 bool KeyController::isLeftPressed()
 {
-    if (keyExt.digitalRead(P3) == LOW)
-    { // giù
+    if (keyExt.digitalRead(left) == LOW)
+    { 
         return true;
     }
     return false;
 }
 bool KeyController::isRightPressed()
 {
-    if (keyExt.digitalRead(P5) == LOW)
-    { // giù
+    if (keyExt.digitalRead(right) == LOW)
+    { 
         return true;
     }
     return false;
 }
 bool KeyController::isAPressed()
 {
-    if (keyExt.digitalRead(P1) == LOW)
-    { // giù
+    if (keyExt.digitalRead(a) == LOW)
+    { 
         return true;
     }
     return false;
 }
 bool KeyController::isBPressed()
 {
-    if (keyExt.digitalRead(P2) == LOW)
-    { // giù
+    if (keyExt.digitalRead(b) == LOW)
+    {
         return true;
     }
     return false;

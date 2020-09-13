@@ -7,12 +7,12 @@
 class KeyController
 {
 private:
-    int up;
-    int down;
-    int left;
-    int right;
-    int a;
-    int b;
+    int up = P7;
+    int down = P0;
+    int left = P3;
+    int right = P5;
+    int a = P1;
+    int b = P2;
 
     void (*upCallBack)() = NULL;
     void (*downCallBack)() = NULL;
