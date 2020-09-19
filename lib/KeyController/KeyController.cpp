@@ -1,6 +1,11 @@
 #include "PCF8574.h"
 #include "KeyController.h"
+
+#ifdef ESP8266
 #include "FS.h"
+#else
+#include <EEPROM.h>
+#endif
 
 bool KeyController::begin(int mode)
 {
@@ -41,7 +46,8 @@ void KeyController::saveKeyMap()
             Serial.print(button[i]);
             Serial.println(" : ");
 
-            while (Serial.available() == 0);
+            while (Serial.available() == 0)
+                ;
 
             String readed = Serial.readString();
             file.println(readed.toInt());
@@ -90,6 +96,52 @@ void KeyController::loadKeyMap()
         Serial.print("memory acces faild");
     }
 }
+#else
+void KeyController::saveKeyMap()
+{
+    Serial.begin(9600);
+    char button[][6] = {"a", "b", "up", "down", "right", "left"};
+
+    for (size_t i = 0; i < 6; i++)
+    {
+        Serial.print("insert pin button ");
+        Serial.print(button[i]);
+        Serial.println(" : ");
+
+        while (Serial.available() == 0)
+            ;
+
+        String readed = Serial.readString();
+        uint8_t val = readed.toInt();
+        EEPROM.write(i, val);
+    }
+}
+
+void KeyController::loadKeyMap()
+{
+    Serial.begin(9600);
+
+    char button[][6] = {"a", "b", "up", "down", "right", "left"};
+    int buttonVal[6];
+
+    for (size_t i = 0; i < 6; i++)
+    {
+        Serial.print("insert pin button ");
+        Serial.print(button[i]);
+        Serial.print(" : ");
+        int val = EEPROM.read(i);
+        Serial.println(val);
+        buttonVal[i] = val;
+    }
+
+    up = buttonVal[2];
+    down = buttonVal[3];
+    left = buttonVal[5];
+    right = buttonVal[4];
+    a = buttonVal[0];
+    b = buttonVal[1];
+}
+
 #endif
 
 bool KeyController::isUpPressed()
