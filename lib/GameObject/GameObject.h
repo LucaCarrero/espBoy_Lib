@@ -3,9 +3,9 @@
 
 #include "Arduino.h"
 
-
-#include <U8g2lib.h>
-
+#ifndef _U8G2LIB_HH
+    #include <U8g2lib.h>
+ #endif
 
 /*
     Classe di base su cui basare gli oggetti di gioco.
@@ -21,10 +21,12 @@ private:
     int b;
 public:
     GameObject(int,int,int,int);
+
     #ifndef _U8G2LIB_HH
     // metodo da override per castomizzare casa disegnare sul display
      virtual void disegna(U8G2 &t);
     #endif
+    
     //getter degli attributi della classe
     int getX();
     int getY();
