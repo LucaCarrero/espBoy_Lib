@@ -1,16 +1,10 @@
-#ifndef Pezzo_h
-#define Pezzo_h
-
+#ifndef GameObject_h
+#define GameObject_h
 #include "Arduino.h"
-
-#ifndef _U8G2LIB_HH
-    #include <U8g2lib.h>
- #endif
 
 /*
     Classe di base su cui basare gli oggetti di gioco.
-    Estendendo questa classe si ha la possibiltà di usufruire di alcuni metodi relativi alla gestione delle cordinate.
-    Per la scelta di cosa disegnare a schermo si è totalmente totalmente liberi, si può gestire tramite metodi esterni o fancendo l'override del metodo disegna.
+    Estendendo questa classe si ha la possibilità  di usufruire di alcuni metodi relativi alla gestione delle coordinate.
 */
 class GameObject {
 private:
@@ -22,10 +16,8 @@ private:
 public:
     GameObject(int,int,int,int);
 
-    #ifndef _U8G2LIB_HH
     // metodo da override per castomizzare casa disegnare sul display
-     virtual void disegna(U8G2 &t);
-    #endif
+    virtual void disegna();
     
     //getter degli attributi della classe
     int getX();
@@ -40,6 +32,7 @@ public:
     void setB(int B);
     void setXY(int,int);
 
+    //metodo per rilevare se il GameObject sul quale viene richiamato collide con un altro passato come parametro.
     int collideWhit(GameObject &r2) ;
 };
 #endif
