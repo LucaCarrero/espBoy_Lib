@@ -10,7 +10,8 @@ Il progetto è in stato di sviluppo.
 <p>Di seguito potete osservare le immagini del primo prototipo(sinistra), e della versione 1.0 che aggiunge possibilità di caricare giochi dalla sd (destra). </p>
 
 <image src="https://github.com/LucaCarrero/espBoy_Lib/blob/master/projectFile/IMG_20200906_102929.jpg" width="300" height="400"/>
-<p> Lo schema della pcb è ancora in fase di revisione appena sarà ultimato verrà rilasciato.</p>
+<h4>Schema della pcb</h4>
+<image src="https://github.com/LucaCarrero/espBoy_Lib/blob/master/projectFile/espboy_schema.png" width="650" height="400"/>
 
 <h2>Software</h2>
 
