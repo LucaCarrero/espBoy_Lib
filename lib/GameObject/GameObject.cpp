@@ -43,3 +43,12 @@ void GameObject::setXY(int nX,int nY){
    setX(nX);
    setY(nY);
 }
+
+int GameObject::collideWhit(GameObject &r2) {
+    if (GameObject::x + GameObject::b/2 < r2.getX() - r2.getB()/2) return 0;
+    if (GameObject::x - GameObject::b/2 > r2.getX() + r2.getB()/2) return 0;
+    if (GameObject::y + GameObject::h/2 < r2.getY() - r2.getH()/2) return 0;
+    if (GameObject::y - GameObject::h/2 > r2.getY() + r2.getH()/2) return 0;
+    return 1;
+}
+

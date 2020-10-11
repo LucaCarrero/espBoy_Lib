@@ -9,8 +9,8 @@
 
 /*
     Classe di base su cui basare gli oggetti di gioco.
-    Estendendo questa classe si ha la possibiltà di gestire di usufruire di alcuni metodi relativi alla gestione delle cordinate.
-    Per la scelta di cosa disegnare a schermo si totalmente totalmente liberisi può gestire tramite metodi esterno o fancendo l'override del metodo disegna.
+    Estendendo questa classe si ha la possibiltà di usufruire di alcuni metodi relativi alla gestione delle cordinate.
+    Per la scelta di cosa disegnare a schermo si è totalmente totalmente liberi, si può gestire tramite metodi esterni o fancendo l'override del metodo disegna.
 */
 class GameObject {
 private:
@@ -39,5 +39,7 @@ public:
     void setH(int H);
     void setB(int B);
     void setXY(int,int);
+
+    int collideWhit(GameObject &r2) ;
 };
 #endif
