@@ -23,7 +23,7 @@ Librerie presenti, create da me, per la gestione dell'hardware sono:
     <li><a href="https://github.com/LucaCarrero/espBoy_Lib/tree/master/lib/KeyController">KeyController</a>: libreria che facilita allo sviluppatore la gestione degli input dei pulsanti(libreria basata su quella dell'extender di pin digitali I/O pcf7584).</li>
     <p>
 <p>Librerie per lo sviluppo di giochi da me create:</p>
-<li> ><a href="https://github.com/LucaCarrero/espBoy_Lib/tree/master/lib/GameObject">GameObject</a>: Libreria di base su qui basare gli oggetti di gioco. (cordinate e dimensioni del componente e rilevamento delle collisioni fra compinenti)
+<li><a href="https://github.com/LucaCarrero/espBoy_Lib/tree/master/lib/GameObject">GameObject</a>: Libreria di base su qui basare gli oggetti di gioco. (cordinate e dimensioni del componente e rilevamento delle collisioni fra compinenti)
 
 <h2>Come Sviluppare</h2> 
 Installare Visual Studio Code e il plugin PlatformIO.
