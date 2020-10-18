@@ -27,7 +27,10 @@ void boot(int cs = 1){
     File config = SD.open("config.conf", FILE_READ); // apro il file con le configurazioni
     File boot = SD.open("boot.bin", FILE_READ); // apro il file con il firmware di base
 
-    if(config && boot ){ // verivico che i file esistano
+    if(!config){ // verivico che i file esistano
+        return;
+    }
+    if(!boot){
         return;
     }
 
