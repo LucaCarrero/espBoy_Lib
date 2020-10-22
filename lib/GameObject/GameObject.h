@@ -17,7 +17,7 @@ public:
     GameObject(int ,int ,int ,int );
     GameObject();
     // metodo da override per castomizzare casa disegnare sul display
-    /* virtual void disegna(); */
+     virtual void disegna();
     
     //getter degli attributi della classe
     int getX();
