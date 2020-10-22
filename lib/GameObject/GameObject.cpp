@@ -7,6 +7,13 @@ GameObject::GameObject(int x, int y, int b , int h){
     GameObject::h = h;    
 }
 
+GameObject::GameObject(){
+    GameObject::x = 0;
+    GameObject::y = 0;
+    GameObject::b = 0;
+    GameObject::h = 0;    
+}
+
 int GameObject::getX(){
    return x;
 }

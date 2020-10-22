@@ -30,7 +30,7 @@ void setup()
     //k.onDownPress(prova);
    // k.saveKeyMap();
    // k.loadKeyMap();
-    //boot (1);
+    boot (1);
 }
 
 void loop()
