@@ -38,12 +38,12 @@ void GameObject::setY(int Y){
    GameObject::y=Y;
 }
 
-void GameObject::setH(int X){
-   GameObject::h =h;
+void GameObject::setH(int H){
+   GameObject::h =H;
 }
 
-void GameObject::setB(int Y){
-   GameObject::b=b;
+void GameObject::setB(int B){
+   GameObject::b=B;
 }
 
 void GameObject::setXY(int nX,int nY){
